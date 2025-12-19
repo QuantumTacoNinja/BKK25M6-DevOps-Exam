@@ -10,7 +10,7 @@ ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@${TARGET_IP} "echo he
 scp -o StrictHostKeyChecking=no -i $FILENAME index.js '$USERNAME@$TARGET_HOST:~/index.js'
 scp -o StrictHostKeyChecking=no -i $FILENAME package.json '$USERNAME@$TARGET_HOST:~/package.json'
 scp -o StrictHostKeyChecking=no -i $FILENAME package-lock.json '$USERNAME@$TARGET_HOST:~/package-lock.json'
-scp -o StrictHostKeyChecking=no -i "$FILENAME" -r node_modules "$USERNAME@$TARGET_HOST:~/node_modules"
+scp -o StrictHostKeyChecking=no -i "$FILENAME" -r node_modules '$USERNAME@$TARGET_HOST:~/node_modules'
 
 # Install nodejs and dependencies.
 ssh -o StrictHostKeyChecking=no -i $FILENAME '$USERNAME@$TARGET_HOST' "
