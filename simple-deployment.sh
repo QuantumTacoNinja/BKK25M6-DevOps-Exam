@@ -28,6 +28,7 @@ ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@${TARGET_HOST} "
 
 # Run
 ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@${TARGET_HOST} "
+  cd ~
   pm2 delete myapp || true  # Ignore if not running
   pm2 start index.js --name myapp
   pm2 save
