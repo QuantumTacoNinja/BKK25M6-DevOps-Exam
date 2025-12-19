@@ -16,15 +16,7 @@ scp -o StrictHostKeyChecking=no -i $FILENAME -r node_modules ${USERNAME}@${TARGE
 ssh -o StrictHostKeyChecking=no -i $FILENAME '$USERNAME@$TARGET_HOST' "
   sudo apt update && sudo apt upgrade -y
 
-  if ! command -v node &> /dev/null; then
-    curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | sudo -E bash -
-    sudo apt install -y nodejs
-  fi
-
-  # if ! command -v pm2 &> /dev/null; then
-  #   sudo npm install -g pm2 --unsafe-perm
-  # fi
-
+  sudo apt install -y nodejs
   sudo npm install -g pm2 --unsafe-perm
 
   cd ~
