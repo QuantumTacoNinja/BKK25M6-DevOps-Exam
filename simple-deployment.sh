@@ -22,14 +22,5 @@ ssh -o StrictHostKeyChecking=no -i $FILENAME ${USERNAME}@${TARGET_HOST} "
   cd ~
   npm ci --omit=dev
 
-  npm index.js
-"
-
-# Run
-ssh -o StrictHostKeyChecking=no -i $FILENAME ${USERNAME}@${TARGET_HOST} "
-  cd ~
-  pm2 delete myapp || true  # Ignore if not running
-  pm2 start index.js --name myapp
-  pm2 save
-  pm2 startup | sudo bash
+  node index.js
 "
