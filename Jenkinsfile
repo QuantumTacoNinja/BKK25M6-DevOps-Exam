@@ -13,23 +13,19 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh "node --test index.test.js"
+            sh "node --test index.test.js"
             }
         }
         stage('Build Docker image') {
             steps {
-                script {
-                    sh 'docker build -t myapp:latest .'
-                }
+                sh 'docker build -t myapp:latest .'
             }
         }
         stage('Build Push Image') {
             steps {
-                script {
-                    def imageName = "ttl.sh/myapp-${env.BUILD_ID}:${2h}"
-                    sh "docker tag myapp:latest ${imageName}"
-                    sh "docker push ${imageName}"
-                }
+                def imageName = "ttl.sh/myapp-${env.BUILD_ID}:${2h}"
+                sh "docker tag myapp:latest ${imageName}"
+                sh "docker push ${imageName}"
             }
         }
 
