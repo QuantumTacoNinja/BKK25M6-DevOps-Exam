@@ -14,16 +14,14 @@ scp -o StrictHostKeyChecking=no -i ${FILENAME} package-lock.json \${USERNAME}@ta
 # Install nodejs and dependencies.
 ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@${TARGET_HOST} "
   sudo apt update && sudo apt upgrade -y
-
   if ! command -v node &> /dev/null; then
     curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | sudo -E bash -
     sudo apt install -y nodejs
   fi
-
   if ! command -v pm2 &> /dev/null; then
     sudo npm install -g pm2
   fi
-
+  npm install -g npm@latest  # Add this line to upgrade npm
   npm ci --omit=dev
 "
 
