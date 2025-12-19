@@ -18,14 +18,12 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
-                sh 'docker build -t myapp:latest .'
+                sh 'docker build . --tag ttl.sh/myapp:1h'
             }
         }
         stage('Build Push Image') {
             steps {
-                def imageName = "ttl.sh/myapp-${env.BUILD_ID}:${2h}"
-                sh "docker tag myapp:latest ${imageName}"
-                sh "docker push ${imageName}"
+                sh 'docker push ttl.sh/myapp:1h'
             }
         }
 
