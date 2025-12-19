@@ -6,6 +6,11 @@ pipeline {
     }
 
     stages {
+        stage('Install dependencies') {
+            steps {
+                sh 'npm i -save express'
+            }
+        }
         stage('Test') {
             steps {
                 sh "node --test index.test.js"
