@@ -25,7 +25,7 @@ pipeline {
                         usernameVariable: 'USERNAME'
                     )]
                 ) {
-                    sh 'simple-deployment.sh'
+                    sh './simple-deployment.sh'
                 }
             }
         }
