@@ -29,6 +29,8 @@ ssh -o StrictHostKeyChecking=no -i $FILENAME '$USERNAME@$TARGET_HOST' "
 
   cd ~
   npm ci --omit=dev
+
+  npm index.js
 "
 
 # Run
