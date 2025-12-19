@@ -11,4 +11,5 @@ pipeline {
                 sh "node --test index.test.js"
             }
         }
+    }
 }
