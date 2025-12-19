@@ -25,7 +25,11 @@ pipeline {
         }
         stage('Build Push Image') {
             steps {
-                sh "docker push ttl.sh/myapp:latest"
+                script {
+                    def imageName = "ttl.sh/myapp-${env.BUILD_ID}:${2h}"
+                    sh "docker tag myapp:latest ${imageName}"
+                    sh "docker push ${imageName}"
+                }
             }
         }
 
