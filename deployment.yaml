@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: ttl.sh/myapp:latest
+        image: ttl.sh/myapp:1h
