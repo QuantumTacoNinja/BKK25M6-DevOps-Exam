@@ -21,17 +21,18 @@ ssh -o StrictHostKeyChecking=no -i $FILENAME '$USERNAME@$TARGET_HOST' "
     sudo apt install -y nodejs
   fi
 
-  # Fix for pm2 global install permission issue (see below)
-  if ! command -v pm2 &> /dev/null; then
-    sudo npm install -g pm2 --unsafe-perm
-  fi
+  # if ! command -v pm2 &> /dev/null; then
+  #   sudo npm install -g pm2 --unsafe-perm
+  # fi
+
+  sudo npm install -g pm2 --unsafe-perm
 
   cd ~
   npm ci --omit=dev
 "
 
 # Run
-ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@${TARGET_HOST} "
+ssh -o StrictHostKeyChecking=no -i $FILENAME ${USERNAME}@${TARGET_HOST} "
   cd ~
   pm2 delete myapp || true  # Ignore if not running
   pm2 start index.js --name myapp
