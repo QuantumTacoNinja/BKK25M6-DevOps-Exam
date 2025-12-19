@@ -13,7 +13,7 @@ scp -o StrictHostKeyChecking=no -i $FILENAME package-lock.json ${USERNAME}@${TAR
 scp -o StrictHostKeyChecking=no -i $FILENAME -r node_modules ${USERNAME}@${TARGET_HOST}:~/node_modules
 
 # Install nodejs and dependencies.
-ssh -o StrictHostKeyChecking=no -i $FILENAME '$USERNAME@$TARGET_HOST' "
+ssh -o StrictHostKeyChecking=no -i $FILENAME {$USERNAME}@${TARGET_HOST} "
   sudo apt update && sudo apt upgrade -y
 
   sudo apt install -y nodejs
