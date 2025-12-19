@@ -2,6 +2,6 @@ Worapat Hongsetong
 
 ### Progression
 - Unit Testing (Complete)
-- Simple Deployment
-- Docker Deployment
+- Simple Deployment (Complete)
+- Docker Deployment (Complete)
 - Kubernetes Deployment
