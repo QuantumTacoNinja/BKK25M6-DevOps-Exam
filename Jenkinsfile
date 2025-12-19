@@ -23,24 +23,18 @@ pipeline {
                 }
             }
         }
-        stage('Docker deployment') {
+        stage('Build Push Image') {
             steps {
-                withCredentials([
-                    sshUserPrivateKey(
-                        credentialsId: 'docker',
-                        keyFileVariable: 'FILENAME',
-                        usernameVariable: 'USERNAME'
-                    )
-                ]) {
-                    sh 'docker save myapp:latest | ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@docker "docker load"'
+                sh "docker push ttl.sh/myapp:1h"
+            }
+        }
 
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@docker "
-                        docker stop myapp-container || true
-                        docker rm myapp-container || true
-                        docker run -d --name myapp-container --publish 4444:4444 myapp:latest
-                    "
-                    '''
+        stage('Kubernetes Deployment') {
+            steps {
+                withKubeConfig([credentialsId: 'myapikey', serverUrl: 'https://kubernetes:6443']) {
+                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl apply -f service.yaml'
+                    sh 'kubectl apply -f definition.yaml'
                 }
             }
         }
