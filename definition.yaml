@@ -6,7 +6,7 @@ metadata:
   name: myapp
 spec:
   containers:
-  - image: ttl.sh/myapp2:1h
+  - image: ttl.sh/myapp:latest
     name: myapp
     resources: {}
   dnsPolicy: ClusterFirst
