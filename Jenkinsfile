@@ -25,13 +25,13 @@ pipeline {
         }
         stage('Build Push Image') {
             steps {
-                sh "docker push ttl.sh/myapp:1h"
+                sh "docker push ttl.sh/myapp:latest"
             }
         }
 
         stage('Kubernetes Deployment') {
             steps {
-                withKubeConfig([credentialsId: 'myapikey', serverUrl: 'https://kubernetes:6443']) {
+                withKubeConfig([credentialsId: 'k8s', serverUrl: 'https://kubernetes:6443']) {
                     sh 'kubectl apply -f deployment.yaml'
                     sh 'kubectl apply -f service.yaml'
                     sh 'kubectl apply -f definition.yaml'
