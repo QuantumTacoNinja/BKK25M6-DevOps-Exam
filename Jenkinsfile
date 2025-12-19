@@ -13,7 +13,20 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh "node --test index.test.js"
+                sh 'node --test index.test.js'
+            }
+        }
+        stage('Simple deployment') {
+            steps {
+                withCredentials(
+                    [sshUserPrivateKey(
+                        credentialsId: 'simple', 
+                        keyFileVariable: 'FILENAME', 
+                        usernameVariable: 'USERNAME'
+                    )]
+                ) {
+                    sh 'simple-deployment.sh'
+                }
             }
         }
     }
