@@ -7,8 +7,9 @@ NODE_VERSION="24.x"
 ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@${TARGET_IP} "echo hello"
 
 # Sync node packages.
-rsync -avz -e "ssh -o StrictHostKeyChecking=no -i ${FILENAME}" \
-  --exclude='node_modules' --exclude='.git' --exclude='.env' ./ ${USERNAME}@${TARGET_HOST}:~ | echo
+scp -o StrictHostKeyChecking=no -i ${FILENAME} index.js \${USERNAME}@target:~/index.js
+scp -o StrictHostKeyChecking=no -i ${FILENAME} package.json \${USERNAME}@target:~/package.json
+scp -o StrictHostKeyChecking=no -i ${FILENAME} package-lock.json \${USERNAME}@target:~/package-lock.json
 
 # Install nodejs and dependencies.
 ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@${TARGET_HOST} "
